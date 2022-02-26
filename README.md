@@ -67,9 +67,9 @@ sudo apt-get install python-dbus
 
 **After installation :**
 in terminal :
-
+```
 sudo raspi-config
-
+```
 Change the Boot mode to command line and auto login.
 and change the hostname if you are using ssh, to better read on network.
 
@@ -85,14 +85,19 @@ omxplayer-sync -luv --no-osd synctest.mp4
 
 **For Auto-play when turn on :**
 in terminal :
+```
 sudo nano .bashrc
-
+```
 Add tat the bottom :
-For Master : 
-sleep 10; omxplayer-sync -muv --no-osd synctest.mp4
-For Slaves : 
-omxplayer-sync -luv --no-osd synctest.mp4
 
+For Master : 
+```
+sleep 10; omxplayer-sync -muv --no-osd synctest.mp4
+```
+For Slaves : 
+```
+omxplayer-sync -luv --no-osd synctest.mp4
+```
 
 
 
