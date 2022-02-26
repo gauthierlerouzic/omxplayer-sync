@@ -2,9 +2,7 @@ OMXPlayer-Sync
 ==============
 
 OMXPlayer-Sync facilitates synchronization of multiple OMXPlayer
-instances over the network in a master/slave fashion.
-
-https://vimeo.com/137133716
+instances over the network in a master/slave fashion. Fork for Raspberry Pi Zero W.
 
 
 Usage
@@ -47,27 +45,53 @@ A recent build of omxplayer for [Jesse](http://steinerdatenbank.de/software/omxp
 
 Installation on Raspbian
 ------------------------
-Perform on both master and slave.
+
+Omxplayer is not anymore on Raspberry Pi Os, so you need to download and Install an Old version of Raspbian. I tried the 2020-02-13-raspbian-buster.zip.
+You can download it here : https://downloads.raspberrypi.org/raspbian_lite/images/raspbian_lite-2020-02-14/
+To install on your Raspberry Pi, use the Raspberry Pi Imager Software : https://www.raspberrypi.com/software/
+
+Once installed, run the Raspberry. Open a terminal window and run that lines :
+
+**For Master and Slaves :**
+
+sudo apt-get install libpcre3 fonts-freefont-ttf fbset libssh-4 python3-dbus
+sudo wget -O /usr/bin/omxplayer-sync https://github.com/gauthierlerouzic/omxplayer-sync/raw/master/omxplayer-sync
+sudo chmod 0755 /usr/bin/omxplayer-sync
+sudo wget https://github.com/gauthierlerouzic/omxplayer-sync/raw/master/synctest.mp4
+* you can also download your video directly, but it's better to use the SyncTest video first to test and debug if it's necessary. Video files need to have exactly the same name and the same frame count.
+sudo pip install pexpect
+sudo apt-get install python-dbus
+
+**After installation :**
+in terminal :
+
+sudo raspi-config
+
+Change the Boot mode to command line and auto login.
+and change the hostname if you are using ssh, to better read on network.
+
+
+Start on Master (-u loop, -v verbose, --no-osd No text)
 ```
-sudo su
-apt-get remove omxplayer
-rm -rf /usr/bin/omxplayer /usr/bin/omxplayer.bin /usr/lib/omxplayer
-apt-get install libpcre3 fonts-freefont-ttf fbset libssh-4 python3-dbus
-wget https://github.com/magdesign/PocketVJ-CP-v3/raw/master/sync/omxplayer_0.3.7-git20170130-62fb580_armhf.deb
-dpkg -i omxplayer_0.3.7~git20170130~62fb580_armhf.deb
-wget -O /usr/bin/omxplayer-sync https://github.com/turingmachine/omxplayer-sync/raw/master/omxplayer-sync
-chmod 0755 /usr/bin/omxplayer-sync
-wget https://github.com/turingmachine/omxplayer-sync/raw/master/synctest.mp4
+omxplayer-sync -muv --no-osd synctest.mp4
+```
+Start on Slave (-u loop, -v verbose, --no-osd No text)
+```
+omxplayer-sync -luv --no-osd synctest.mp4
 ```
 
-Start on Master (-u loop, -v verbose)
-```
-omxplayer-sync -muv synctest.mp4
-```
-Start on Slave (-u loop, -v verbose)
-```
-omxplayer-sync -luv synctest.mp4
-```
+**For Auto-play when turn on :**
+in terminal :
+sudo nano .bashrc
+
+Add tat the bottom :
+For Master : 
+sleep 10; omxplayer-sync -muv --no-osd synctest.mp4
+For Slaves : 
+omxplayer-sync -luv --no-osd synctest.mp4
+
+
+
 
 Usage notes
 -----------
