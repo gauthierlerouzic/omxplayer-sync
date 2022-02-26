@@ -53,14 +53,17 @@ To install on your Raspberry Pi, use the Raspberry Pi Imager Software : https://
 Once installed, run the Raspberry. Open a terminal window and run that lines :
 
 **For Master and Slaves :**
-
+```
 sudo apt-get install libpcre3 fonts-freefont-ttf fbset libssh-4 python3-dbus
 sudo wget -O /usr/bin/omxplayer-sync https://github.com/gauthierlerouzic/omxplayer-sync/raw/master/omxplayer-sync
 sudo chmod 0755 /usr/bin/omxplayer-sync
 sudo wget https://github.com/gauthierlerouzic/omxplayer-sync/raw/master/synctest.mp4
+```
 * you can also download your video directly, but it's better to use the SyncTest video first to test and debug if it's necessary. Video files need to have exactly the same name and the same frame count.
+```
 sudo pip install pexpect
 sudo apt-get install python-dbus
+```
 
 **After installation :**
 in terminal :
