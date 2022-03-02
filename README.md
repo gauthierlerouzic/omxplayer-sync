@@ -3,6 +3,7 @@ OMXPlayer-Sync
 
 OMXPlayer-Sync facilitates synchronization of multiple OMXPlayer
 instances over the network in a master/slave fashion. Fork for Raspberry Pi Zero W.
+Tried and works fine on 4 raspberry pi zero W, connect to same wifi router. No need Static IPs
 
 
 Usage
@@ -84,7 +85,6 @@ omxplayer-sync -luv --no-osd synctest.mp4
 ```
 
 **For Auto-play when turn on :**
-in terminal :
 ```
 sudo nano .bashrc
 ```
@@ -109,7 +109,8 @@ Usage notes
  * A RJ45 cable must be connected before you start the master, otherwise it will not send sync data to slave.
  * Do not send audio output flags with omxplayer-sync on the slave e.g. /usr/bin/omxplayer-sync -lu -o both /media/internal/video/* 
  * Use videos which are min. 60 seconds or longer
- * If you dont know how to create a h264 mp4 file, visit http://www.online-convert.com.
+ * If you dont know how to create a h264 mp4 file, visit http://www.online-convert.com. IMPORTANT, click "Disable audio track". Audio can desync
+ * Size the video file for the screensize. It's better is omxplayer-sync do not need to resize. Can be a desync problem
 
 
 Example usage
