@@ -111,9 +111,16 @@ Usage notes
  * Use videos which are min. 60 seconds or longer
  * If you dont know how to create a h264 mp4 file, visit http://www.online-convert.com. IMPORTANT, click "Disable audio track". Audio can desync
  * Size the video file for the screensize. It's better is omxplayer-sync do not need to resize. Can be a desync problem
-
+ * I was experiencing desync on WiFi, and you can try to modify GOP on your videos using ffmpeg. 
+ My example using ffmpeg encoder :
+```
+ffmpeg -i synctest.mp4 -c:v libx264 -b:v 4M -x264-params keyint=24:bframes=2 synctestGOP.mp4
+```
+Don't forget to change the file names on your line. 
 
 Example usage
 --------------
 see this link: https://www.youtube.com/watch?v=Xp6GKFaw0io&feature=youtu.be
 by DSPeelJ
+my project : https://www.instagram.com/p/CbK-Rejoe-V/
+Sources for ffmpeg GOP custom : https://aws.amazon.com/fr/blogs/media/part-1-back-to-basics-gops-explained/
