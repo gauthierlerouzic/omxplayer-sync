@@ -122,5 +122,7 @@ Example usage
 --------------
 see this link: https://www.youtube.com/watch?v=Xp6GKFaw0io&feature=youtu.be
 by DSPeelJ
+
 my project : https://www.instagram.com/p/CbK-Rejoe-V/
+
 Sources for ffmpeg GOP custom : https://aws.amazon.com/fr/blogs/media/part-1-back-to-basics-gops-explained/
